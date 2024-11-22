@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  container-manager:
+    build: .
+    container_name: container-manager
+    ports:
+      - "8081:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - DOCKER_HOST=unix:///var/run/docker.sock
+      - API_PORT=8080
+      - LOG_LEVEL=info
+    restart: unless-stopped
